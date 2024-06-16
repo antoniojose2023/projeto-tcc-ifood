@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "688259837692",
+    "project_id": "appifood-6c3c8",
+    "storage_bucket": "appifood-6c3c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688259837692:android:5a5f32a2107b024e653179",
+        "android_client_info": {
+          "package_name": "com.example.appifoodtcc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMPpEo8UjkiEM1xnJXb-xkaW9xg3WVXBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppIfoodTcc</string>
+    <string name="email_login">Seu email</string>
+    <string name="senha_login">Senha</string>
+    <string name="nome_cadastro">Nome </string>
+    <string name="email_cadastro">Email</string>
+    <string name="senha_cadastro">Senha</string>
+    <string name="fone_cadastro">Fone</string>
+    <string name="botao_cadastrar">Cadastrar</string>
+</resources>
