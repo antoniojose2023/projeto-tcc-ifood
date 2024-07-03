@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AppIfoodTcc"
 include(":cliente")
+include(":core")

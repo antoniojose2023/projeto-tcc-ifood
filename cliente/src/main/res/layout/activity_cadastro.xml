@@ -6,9 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroActivity"
+    tools:context=".presentation.view.CadastroActivity"
     >
-
 
     <include
         android:id="@+id/inlcudeToolbar"
@@ -19,14 +18,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputNomeCadastro"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" android:layout_width="0dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editNomeCadastro"
@@ -84,11 +82,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInputSenhaCadastro">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/editFoneCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/fone_cadastro"
+            app:mask="(##) #####-####"
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 

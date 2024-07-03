@@ -1,4 +1,4 @@
-package com.example.appifoodtcc
+package com.example.appifoodtcc.presentation.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -7,4 +7,10 @@
     <string name="senha_cadastro">Senha</string>
     <string name="fone_cadastro">Fone</string>
     <string name="botao_cadastrar">Cadastrar</string>
+
+
+    <string name="erro_nome">"erro no campo nome"</string>
+    <string name="erro_email">"erro no campo email"</string>
+    <string name="erro_senha">"erro no campo senha"</string>
+    <string name="erro_fone">"erro no campo fone"</string>
 </resources>

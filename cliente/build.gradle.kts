@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.service)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
    // id("com.google.gms.google-services")
 }
 
@@ -48,6 +50,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.viewmodel.android)
+    implementation(project(":core"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,4 +61,22 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
+
+    //library hilt dagger
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    //library de mascara
+    implementation(libs.maskededittext)
+
+    //library validacao
+    implementation (libs.easyvalidation.core)
+
+
+    //fragment ktx
+    implementation(libs.androidx.core.ktx)
+}
+
+kapt {
+    correctErrorTypes = true
 }
