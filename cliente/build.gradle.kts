@@ -75,6 +75,9 @@ dependencies {
 
     //fragment ktx
     implementation(libs.androidx.core.ktx)
+
+    //splaScreem
+    implementation(libs.androidx.core.splashscreen)
 }
 
 kapt {

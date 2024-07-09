@@ -1,9 +1,13 @@
 package com.example.appifoodtcc.presentation.view
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnticipateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.appifoodtcc.R
 import com.example.appifoodtcc.databinding.ActivityLoginBinding
 import com.example.appifoodtcc.domain.model.Usuario
@@ -22,6 +26,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var exibirAlertDialogCarregamento: ExibirAlertDialogCarregamento
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splash = installSplashScreen()
+        splash.setKeepOnScreenCondition{
+             false
+        }
+
+        //Thread.sleep(3000)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
