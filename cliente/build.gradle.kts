@@ -78,6 +78,18 @@ dependencies {
 
     //splaScreem
     implementation(libs.androidx.core.splashscreen)
+
+    val nav_version = "2.7.7"
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //biblioteca picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
+    //Android Image Slider
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
 }
 
 kapt {

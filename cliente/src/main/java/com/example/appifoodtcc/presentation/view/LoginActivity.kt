@@ -1,22 +1,21 @@
 package com.example.appifoodtcc.presentation.view
 
-import android.animation.ObjectAnimator
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AnticipateInterpolator
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.appifoodtcc.R
 import com.example.appifoodtcc.databinding.ActivityLoginBinding
 import com.example.appifoodtcc.domain.model.Usuario
+import com.example.appifoodtcc.domain.usecase.EsconderTeclado
 import com.example.appifoodtcc.presentation.ViewModelAutenticacao
 import com.example.core.ExibirAlertDialogCarregamento
-import com.example.core.MostrarMensagem
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -25,13 +24,19 @@ class LoginActivity : AppCompatActivity() {
     private val viewModelAutenticacao: ViewModelAutenticacao by viewModels()
     private lateinit var exibirAlertDialogCarregamento: ExibirAlertDialogCarregamento
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         val splash = installSplashScreen()
         splash.setKeepOnScreenCondition{
-             false
+            viewModelAutenticacao.verificarUsuarioLogado.observe(this){ logado->
+                if(logado){
+                    navegarTelaPrincipal()
+                }
+            }
+
+            false
         }
 
-        //Thread.sleep(3000)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -59,13 +64,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModelAutenticacao.sucesso.observe(this){sucesso->
-            if(sucesso){
-                navegarTelaPrincipal()
-            }else{
-                MostrarMensagem( "Erro ao tentar salvar" )
-            }
-        }
+//        viewModelAutenticacao.sucesso.observe(this){sucesso->
+//            if(sucesso){
+//                navegarTelaPrincipal()
+//            }else{
+//                MostrarMensagem( "Erro ao tentar salvar" )
+//            }
+//        }
 
         viewModelAutenticacao.carregamento.observe(this){carregando->
             if(carregando){
@@ -76,27 +81,42 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModelAutenticacao.verificarUsuarioLogado.observe(this){ logado->
-            if(logado){
-                navegarTelaPrincipal()
-            }
-        }
-
     }
 
     private fun navegarTelaPrincipal(){
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     private fun clicks() {
-
         with(binding){
             btEntrarLogin.setOnClickListener {
+
+                EsconderTeclado()
+
+                editEmailLogin.clearFocus()
+                editSenhaLogin.clearFocus()
+
                 val email = editEmailLogin.text.toString()
                 val senha = editSenhaLogin.text.toString()
 
                 val usuario = Usuario(email = email, senha = senha)
-                viewModelAutenticacao.logarUsuario(usuario)
+                viewModelAutenticacao.logarUsuario(usuario){  uiStatus ->  
+                      when(uiStatus){
+                          is UIStatus.Sucesso -> {
+                              val retorno = uiStatus.parametro
+                              if(retorno){
+                                    Toast.makeText(applicationContext, "Logado com sucesso.", Toast.LENGTH_LONG).show()
+                                    navegarTelaPrincipal()
+                              }
+                          }
+                          is UIStatus.Erro ->{
+                                   val erro = uiStatus.mensagem
+                                   Toast.makeText(applicationContext, "$erro", Toast.LENGTH_LONG).show()
+                          }
+
+                      }
+                }
             }
 
             txtCadastrarLogin.setOnClickListener {

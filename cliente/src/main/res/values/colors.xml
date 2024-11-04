@@ -6,4 +6,7 @@
     <color name="branco">#FFFFFFFF</color>
     <color name="vermellho">#F44336</color>
     <color name="vermellhoClaro">#EA6D64</color>
+    <color name="transparente">#C0FFFFFF</color>
+
+    <color name="CinzaClaro">#EDD9D8</color>
 </resources>

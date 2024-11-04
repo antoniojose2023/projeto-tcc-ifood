@@ -13,4 +13,6 @@
     <string name="erro_email">"erro no campo email"</string>
     <string name="erro_senha">"erro no campo senha"</string>
     <string name="erro_fone">"erro no campo fone"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

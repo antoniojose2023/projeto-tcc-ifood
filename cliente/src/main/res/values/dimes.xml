@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+       <dimen name="titulo1">34dp</dimen>
+       <dimen name="titulo2">28dp</dimen>
+       <dimen name="titulo3">24dp</dimen>
+       <dimen name="titulo4">16dp</dimen>
+       <dimen name="titulo5">14dp</dimen>
+       <dimen name="titulo6">12dp</dimen>
+</resources>

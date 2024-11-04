@@ -1,13 +1,16 @@
 package com.example.appifoodtcc.presentation.view
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appifoodtcc.R
 import com.example.appifoodtcc.databinding.ActivityCadastroBinding
 import com.example.appifoodtcc.domain.model.Usuario
+import com.example.appifoodtcc.domain.usecase.EsconderTeclado
 import com.example.appifoodtcc.presentation.ViewModelAutenticacao
 import com.example.core.ExibirAlertDialogCarregamento
 import com.example.core.MostrarMensagem
@@ -22,6 +25,7 @@ class CadastroActivity : AppCompatActivity() {
 
     private lateinit var exibirAlertDialogCarregamento : ExibirAlertDialogCarregamento
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -35,17 +39,40 @@ class CadastroActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     private fun inicialiazarClicks() {
 
         with( binding ){
             btCadastrar.setOnClickListener {
+
+                EsconderTeclado()
+
+                editNomeCadastro.clearFocus()
+                editEmailCadastro.clearFocus()
+                editSenhaCadastro.clearFocus()
+                editFoneCadastro.clearFocus()
+
                 val nome = editNomeCadastro.text.toString()
                 val email = editEmailCadastro.text.toString()
                 val senha = editSenhaCadastro.text.toString()
                 val fone = editFoneCadastro.text.toString()
 
                 val usuario = Usuario( nome, email, senha, fone)
-                viewModelAutenticacao.cadastrarUsuario( usuario )
+                viewModelAutenticacao.cadastrarUsuario( usuario ){ uiStatus ->  
+                     when(uiStatus){
+                         is UIStatus.Sucesso -> {
+                               uiStatus.parametro
+                               if(uiStatus.parametro){
+                                   Toast.makeText(applicationContext, "Sucesso ao cadastrar", Toast.LENGTH_LONG).show()
+                                   startActivity(Intent(applicationContext, LoginActivity::class.java))
+                               }
+                         }
+                         is UIStatus.Erro -> {
+                                Toast.makeText(applicationContext, "${uiStatus.mensagem}", Toast.LENGTH_LONG).show()
+                         }
+
+                     }
+                }
             }
 
         }
@@ -84,14 +111,15 @@ class CadastroActivity : AppCompatActivity() {
 
 
     private fun navegarTelaPrincipal(){
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
+
     }
 
 
 
     private fun inicializarToolbar() {
 
-        val toobar = binding.inlcudeToolbar.materialToolbar
+        val toobar = binding.materialToolbar
         setSupportActionBar( toobar )
 
         supportActionBar?.apply {

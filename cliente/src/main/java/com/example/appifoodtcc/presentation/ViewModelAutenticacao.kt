@@ -8,9 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.appifoodtcc.domain.ResultadoValidacao
 import com.example.appifoodtcc.domain.model.Usuario
 import com.example.appifoodtcc.domain.repository.RepositoryAutenticacaoImpl
+import com.example.appifoodtcc.presentation.view.UIStatus
 import com.example.appifoodtcc.domain.usecase.UseCaseAutenticacao
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,28 +33,26 @@ class ViewModelAutenticacao @Inject constructor(
      private val _verificarUsuarioLogado = MutableLiveData<Boolean>()
      var verificarUsuarioLogado: LiveData<Boolean> = _verificarUsuarioLogado
 
-    fun cadastrarUsuario(usuario: Usuario){
+    fun cadastrarUsuario(usuario: Usuario, status: (UIStatus<Boolean>)-> Unit){
         val resultadoValidacao = useCaseAutenticacao.validacaoCadastro(usuario)
         _resultadoValidacao.value = resultadoValidacao
         if(resultadoValidacao.sucessoValicacaoCadastro){
             _carregamento.value = true
             viewModelScope.launch {
-                val sucessoCadastro = repositoryAutenticacaoImpl.cadastrarUsuario( usuario )
-                _sucesso.postValue( sucessoCadastro )
-                _carregamento.postValue( false )
+                 repositoryAutenticacaoImpl.cadastrarUsuario( usuario, status )
+                 _carregamento.postValue( false )
             }
 
         }
     }
 
-    fun logarUsuario(usuario: Usuario){
+    fun logarUsuario(usuario: Usuario, states: (UIStatus<Boolean>)-> Unit){
         val resultadoValidacao = useCaseAutenticacao.validarLogin( usuario )
         _resultadoValidacao.value = resultadoValidacao
         if(resultadoValidacao.sucessoValicacaoLogin){
             _carregamento.value = true
             viewModelScope.launch {
-                val sucessoCadastro = repositoryAutenticacaoImpl.loginUsuario( usuario )
-                _sucesso.postValue( sucessoCadastro )
+                 repositoryAutenticacaoImpl.loginUsuario( usuario, states )
                 _carregamento.postValue( false )
             }
 
@@ -63,17 +61,13 @@ class ViewModelAutenticacao @Inject constructor(
 
     fun verificarUsuarioLogado(){
         _carregamento.value = true
-
-        viewModelScope.launch {
-            val logado = repositoryAutenticacaoImpl.verificarUsuarioLogado()
+             val logado = repositoryAutenticacaoImpl.verificarUsuarioLogado()
             if(logado){
-                delay(3000)
                 _carregamento.postValue( false )
                 _verificarUsuarioLogado.postValue( logado )
             }else{
                 _carregamento.postValue( false )
             }
-        }
     }
 
 }
