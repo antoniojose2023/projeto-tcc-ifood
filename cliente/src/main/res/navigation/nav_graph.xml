@@ -42,5 +42,14 @@
         android:id="@+id/produtoFragment"
         android:name="com.example.appifoodtcc.ProdutoFragment"
         android:label="fragment_produto"
-        tools:layout="@layout/fragment_produto" />
+        tools:layout="@layout/fragment_produto" >
+        <action
+            android:id="@+id/action_produtoFragment_to_finalizaPedidoFragment"
+            app:destination="@id/finalizaPedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalizaPedidoFragment"
+        android:name="com.example.appifoodtcc.FinalizaPedidoFragment"
+        android:label="fragment_finaliza_pedido"
+        tools:layout="@layout/fragment_finaliza_pedido" />
 </navigation>

@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appifoodtcc.databinding.FragmentFinalizaPedidoBinding
+import com.example.appifoodtcc.databinding.FragmentHomeBinding
 import com.example.appifoodtcc.databinding.FragmentProdutoBinding
-import com.example.appifoodtcc.databinding.ItemProdutoBinding
 import com.example.appifoodtcc.domain.model.Opcionais
 import com.example.appifoodtcc.presentation.adapter.AdapterOpcionais
 
 
-class ProdutoFragment : Fragment() {
+class FinalizaPedidoFragment : Fragment() {
 
-    lateinit var binding: FragmentProdutoBinding
+    private lateinit var binding: FragmentFinalizaPedidoBinding
 
     val listaOpcionais = listOf(
         Opcionais(
@@ -32,11 +33,14 @@ class ProdutoFragment : Fragment() {
         ),
         Opcionais(
             "item 5","trary to popular belief, Lorem Ipsum is not simply random", "10,90", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjUnCJl_eMFk29zbGdU1F5xiz768YltBzhtA&s"
-        ),Opcionais(
+        ),
+        Opcionais(
             "item 6","trary to popular belief, Lorem Ipsum is not simply random", "10,90", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjUnCJl_eMFk29zbGdU1F5xiz768YltBzhtA&s"
-        ),Opcionais(
+        ),
+        Opcionais(
             "item 7","trary to popular belief, Lorem Ipsum is not simply random", "10,90", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjUnCJl_eMFk29zbGdU1F5xiz768YltBzhtA&s"
-        ),Opcionais(
+        ),
+        Opcionais(
             "item 8","trary to popular belief, Lorem Ipsum is not simply random", "10,90", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjUnCJl_eMFk29zbGdU1F5xiz768YltBzhtA&s"
         ),
     )
@@ -50,36 +54,31 @@ class ProdutoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentProdutoBinding.inflate( inflater, container, false )
+        // Inflate the layout for this fragment
+        binding = FragmentFinalizaPedidoBinding.inflate( inflater, container, false )
 
         inicializarEventosClique()
         inicializarRecyclerViewOpcionais()
 
         return binding.root
     }
-
     private fun inicializarRecyclerViewOpcionais(){
 
         val adapterOpcionais = AdapterOpcionais()
         adapterOpcionais.listaOpcionais = listaOpcionais
 
-        binding.rvOpcionaisProduto.adapter = adapterOpcionais
-        binding.rvOpcionaisProduto.layoutManager = LinearLayoutManager(binding.root.context)
+
+        binding.rvProdutoFinalizaPedido.adapter = adapterOpcionais
+        binding.rvProdutoFinalizaPedido.layoutManager = LinearLayoutManager(binding.root.context)
+
 
     }
 
     private fun inicializarEventosClique() {
 
-          binding.imageButtonVoltarOpcionais.setOnClickListener {
-               findNavController().navigate( R.id.lojaFragment )
-          }
-
-        binding.btAdicionarProdutoOpcionais.setOnClickListener {
-            findNavController().navigate( R.id.finalizaPedidoFragment)
+        binding.imageButtonVoltarFinalizaPedido.setOnClickListener {
+            findNavController().navigate( R.id.produtoFragment )
         }
-
-
     }
 
 
