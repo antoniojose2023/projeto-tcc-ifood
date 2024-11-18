@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
          Loja("chinaBox", "https://play-lh.googleusercontent.com/mHUaPq-EwnR74PaP7if9N5lEZzzNxvnXk1FFBaU5hE2mwgOzg7qkYGh4UjoOxBiQzg", "loja 01"),
          Loja("chinaBox 1", "https://static.vecteezy.com/ti/vetor-gratis/p3/9259370-simples-e-limpo-restaurante-logo-modelo-design-em-cor-marrom-adequado-para-restaurantes-cafe-lojas-barracas-comida-menus-etc-gratis-vetor.jpg", "loja 02"),
          Loja("chinaBox 2", "https://play-lh.googleusercontent.com/mHUaPq-EwnR74PaP7if9N5lEZzzNxvnXk1FFBaU5hE2mwgOzg7qkYGh4UjoOxBiQzg", "loja 03"),
-         Loja("chinaBox 3", "hhttps://static.vecteezy.com/ti/vetor-gratis/p3/9259370-simples-e-limpo-restaurante-logo-modelo-design-em-cor-marrom-adequado-para-restaurantes-cafe-lojas-barracas-comida-menus-etc-gratis-vetor.jpg", "loja 04"),
+         Loja("chinaBox 3", "https://static.vecteezy.com/ti/vetor-gratis/p3/9259370-simples-e-limpo-restaurante-logo-modelo-design-em-cor-marrom-adequado-para-restaurantes-cafe-lojas-barracas-comida-menus-etc-gratis-vetor.jpg", "loja 04"),
          Loja("chinaBox 4", "https://play-lh.googleusercontent.com/mHUaPq-EwnR74PaP7if9N5lEZzzNxvnXk1FFBaU5hE2mwgOzg7qkYGh4UjoOxBiQzg", "loja 04"),
          Loja("chinaBox 5" , "https://static.vecteezy.com/ti/vetor-gratis/p3/9259370-simples-e-limpo-restaurante-logo-modelo-design-em-cor-marrom-adequado-para-restaurantes-cafe-lojas-barracas-comida-menus-etc-gratis-vetor.jpg", "loja 04"),
          Loja("chinaBox 6", "https://play-lh.googleusercontent.com/mHUaPq-EwnR74PaP7if9N5lEZzzNxvnXk1FFBaU5hE2mwgOzg7qkYGh4UjoOxBiQzg", "loja 04"),
